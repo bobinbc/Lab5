@@ -7,25 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".modify_window">
 
-    <!--Layout to hold record ID with TextView to prevent editing-->
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <TextView
-            android:layout_width="80dp"
-            android:gravity="center_vertical"
-            android:layout_height="match_parent"
-            android:id="@+id/textViewID"
-            android:text="ID" />
-
-        <TextView
-            android:id="@+id/viewID"
-            android:layout_width="180dp"
-            android:layout_height="match_parent" />
-    </LinearLayout>
-
     <!--Layout to hold First Name with EditView to allow add/edit-->
     <LinearLayout
         android:orientation="horizontal"

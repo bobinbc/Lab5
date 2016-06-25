@@ -10,27 +10,25 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-
-import android.util.Log;
-
 public class DBAdapter {
 
-    private static final String TAG = "DBAdapter"; //used for logging database version changes
+    //used for logging database version changes
+    private static final String TAG = "DBAdapter";
 
     // Field Names:
     public static final String KEY_ROWID = "_id";
     public static final String KEY_FIRSTNAME = "firstname";
     public static final String KEY_LASTNAME = "lastname";
-    public static final String KEY_MARKS = "marks";
+    public static final String KEY_IMAGE = "image";
 
-    public static final String[] ALL_KEYS = new String[] {KEY_ROWID, KEY_FIRSTNAME, KEY_LASTNAME, KEY_MARKS};
+    public static final String[] ALL_KEYS = new String[]{KEY_ROWID, KEY_FIRSTNAME, KEY_LASTNAME, KEY_IMAGE};
 
     // DataBase info
-    public static final String DATABASE_NAME = "dbStudent";
-    public static final String DATABASE_TABLE = "Student";
+    public static final String DATABASE_NAME = "dbContact";
+    public static final String DATABASE_TABLE = "Contact";
 
     // The version number must be incremented each time a change to DB structure occurs.
-    public static final int DATABASE_VERSION = 2;
+    public static final int DATABASE_VERSION = 3;
 
     //SQL statement to create database
     private static final String DATABASE_CREATE_SQL =
@@ -38,7 +36,7 @@ public class DBAdapter {
                     + " (" + KEY_ROWID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + KEY_FIRSTNAME + " TEXT NOT NULL, "
                     + KEY_LASTNAME + " TEXT, "
-                    + KEY_MARKS + " INTEGER "
+                    + KEY_IMAGE + " BLOB "
                     + ");";
 
     private final Context context;
@@ -62,11 +60,11 @@ public class DBAdapter {
     }
 
     // Add a new set of values to be inserted into the database.
-    public boolean insertRow(String firstname, String lastname, Integer marks) {
+    public boolean insertRow(String firstname, String lastname, byte[] image) {
         ContentValues initialValues = new ContentValues();
         initialValues.put(KEY_FIRSTNAME, firstname);
         initialValues.put(KEY_LASTNAME, lastname);
-        initialValues.put(KEY_MARKS, marks);
+        initialValues.put(KEY_IMAGE, image);
 
         // Insert the data into the database.
         return db.insert(DATABASE_TABLE, null, initialValues) != 0;
@@ -100,12 +98,12 @@ public class DBAdapter {
     }
 
     // Change an existing row to be equal to new data.
-    public boolean updateRow(long rowId, String firstname, String lastname, Integer marks) {
+    public boolean updateRow(long rowId, String firstname, String lastname, byte[] image) {
         String where = KEY_ROWID + "=" + rowId;
         ContentValues newValues = new ContentValues();
         newValues.put(KEY_FIRSTNAME, firstname);
         newValues.put(KEY_LASTNAME, lastname);
-        newValues.put(KEY_MARKS, marks);
+        newValues.put(KEY_IMAGE, image);
         // Insert it into the database.
         return db.update(DATABASE_TABLE, newValues, where, null) != 0;
     }

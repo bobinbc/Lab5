@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     DBAdapter dbHelper;
     //CursorAdapter to set CustomListView
     SimpleCursorAdapter myCursorAdapter;
-    //Inflator to show pop up window
+    //Inflater to show pop up window
     LayoutInflater inflater;
 
     @Override
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         populateListView();
     }
 
-    //Initilizing database handler reference
+    //Initializing database handler reference
     private void openDB() {
         dbHelper = new DBAdapter(this);
         dbHelper.open();
@@ -57,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
         ListView myList = (ListView) findViewById(R.id.listView_student);
         myList.setAdapter(myCursorAdapter);
     }
-
 
     public void onClick_AddPopUp(View view){
         //Initializing an Alert Builder for popup window
@@ -109,106 +108,106 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }
-
-    //On click of Edit button, retrieves row details and populates the modify window
-    public void onClick_EditButton(View view)
-    {
-        //Getting List reference
-        ListView myList = (ListView) findViewById(R.id.listView_student);
-        //Getting position from the list
-        int position = myList.getPositionForView((View)view.getParent());
-        //Getting itemID based on retrieved position
-        long valueID = myCursorAdapter.getItemId(position);
-        //Getting row details based on ID into cursor
-        Cursor sampCursor = dbHelper.getRow(valueID);
-
-        //Storing the details of the row into local variables
-        String editID = String.valueOf(sampCursor.getLong(0));
-        String editFName = sampCursor.getString(1).toString();
-        String editLName = sampCursor.getString(2).toString();
-        String editMarks = String.valueOf(sampCursor.getInt(3));
-
-        //Setting up popup window using AlertDialog
-        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-        view = inflater.inflate(R.layout.modify_screen, null);
-        builder.setView(view);
-        builder.setTitle("Edit Student");
-        final View view2 = view;
-
-        //Getting references of popup window Text and Edit fields
-        final TextView tvID = (TextView) view2.findViewById(R.id.viewID);
-        final EditText etFirstName = (EditText) view2.findViewById(R.id.editFirstName);
-        final EditText etLastName = (EditText) view2.findViewById(R.id.editLastName);
-        final EditText etMarks = (EditText) view2.findViewById(R.id.editMarks);
-
-        //Setting text fields based on retrieved values
-        tvID.setText(editID);
-        etFirstName.setText(editFName);
-        etLastName.setText(editLName);
-        etMarks.setText(editMarks);
-
-        //Click Listener of Positive Button (Edit) - Update changes to database
-        builder.setPositiveButton("Edit", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int id) {
-                inflater.inflate(R.layout.modify_screen, null);
-
-                //Getting references of edit texts in popup window
-                final TextView tvID = (TextView) view2.findViewById(R.id.viewID);
-                final EditText etFirstName = (EditText) view2.findViewById(R.id.editFirstName);
-                final EditText etLastName = (EditText) view2.findViewById(R.id.editLastName);
-                final EditText etMarks = (EditText) view2.findViewById(R.id.editMarks);
-
-                //Updating database with changed values
-                boolean result = dbHelper.updateRow( Long.parseLong(tvID.getText().toString()), etFirstName.getText().toString(),etLastName.getText().toString(),Integer.parseInt(etMarks.getText().toString()));
-
-                //Set toast message based on result
-                if (result)
-                    Toast.makeText(getApplicationContext(), "Student:"+etLastName.getText().toString()+", "+etFirstName.getText().toString()+"  updated successfully", Toast.LENGTH_SHORT).show();
-                else
-                    Toast.makeText(getApplicationContext(), "Student:"+etLastName.getText().toString()+", "+etFirstName.getText().toString()+"  updating failed", Toast.LENGTH_SHORT).show();
-
-                //Reload list with latest data
-                populateListView();
-            }
-        })
-                //Click Listener of Negative Button (Cancel) - Do nothing and close window
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int id) {
-                    }
-                });
-
-        //Show popup window
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
-    }
-
-    public void onClick_DeleteButton(View view)
-    {
-        //Getting List reference
-        ListView myList = (ListView) findViewById(R.id.listView_student);
-        //Getting position from the list
-        final int position = myList.getPositionForView((View) view.getParent());
-        //Getting itemID based on retrieved position
-        long valueID = myCursorAdapter.getItemId(position);
-        //Getting row details based on ID into cursor
-        Cursor sampCursor = dbHelper.getRow(valueID);
-
-        //Storing the details of the row into local variables
-        String editFName = sampCursor.getString(1).toString();
-        String editLName = sampCursor.getString(2).toString();
-
-        //Deleting row from database based on ID
-        boolean result = dbHelper.deleteRow(valueID);
-
-        //Set toast message based on result
-        if(result)
-            Toast.makeText(getApplicationContext(),"Student:"+editLName+", "+editFName+"  deleted",Toast.LENGTH_SHORT).show();
-        else
-            Toast.makeText(getApplicationContext(),"Student:"+editLName+", "+editFName+"  failed to delete",Toast.LENGTH_SHORT).show();
-
-        //Reload list with latest data
-        populateListView();
-    }
+//
+//    //On click of Edit button, retrieves row details and populates the modify window
+//    public void onClick_EditButton(View view)
+//    {
+//        //Getting List reference
+//        ListView myList = (ListView) findViewById(R.id.listView_student);
+//        //Getting position from the list
+//        int position = myList.getPositionForView((View)view.getParent());
+//        //Getting itemID based on retrieved position
+//        long valueID = myCursorAdapter.getItemId(position);
+//        //Getting row details based on ID into cursor
+//        Cursor sampCursor = dbHelper.getRow(valueID);
+//
+//        //Storing the details of the row into local variables
+//        String editID = String.valueOf(sampCursor.getLong(0));
+//        String editFName = sampCursor.getString(1).toString();
+//        String editLName = sampCursor.getString(2).toString();
+//        String editMarks = String.valueOf(sampCursor.getInt(3));
+//
+//        //Setting up popup window using AlertDialog
+//        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+//        view = inflater.inflate(R.layout.modify_screen, null);
+//        builder.setView(view);
+//        builder.setTitle("Edit Student");
+//        final View view2 = view;
+//
+//        //Getting references of popup window Text and Edit fields
+//        final TextView tvID = (TextView) view2.findViewById(R.id.viewID);
+//        final EditText etFirstName = (EditText) view2.findViewById(R.id.editFirstName);
+//        final EditText etLastName = (EditText) view2.findViewById(R.id.editLastName);
+//        final EditText etMarks = (EditText) view2.findViewById(R.id.editMarks);
+//
+//        //Setting text fields based on retrieved values
+//        tvID.setText(editID);
+//        etFirstName.setText(editFName);
+//        etLastName.setText(editLName);
+//        etMarks.setText(editMarks);
+//
+//        //Click Listener of Positive Button (Edit) - Update changes to database
+//        builder.setPositiveButton("Edit", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int id) {
+//                inflater.inflate(R.layout.modify_screen, null);
+//
+//                //Getting references of edit texts in popup window
+//                final TextView tvID = (TextView) view2.findViewById(R.id.viewID);
+//                final EditText etFirstName = (EditText) view2.findViewById(R.id.editFirstName);
+//                final EditText etLastName = (EditText) view2.findViewById(R.id.editLastName);
+//                final EditText etMarks = (EditText) view2.findViewById(R.id.editMarks);
+//
+//                //Updating database with changed values
+//                boolean result = dbHelper.updateRow( Long.parseLong(tvID.getText().toString()), etFirstName.getText().toString(),etLastName.getText().toString(),Integer.parseInt(etMarks.getText().toString()));
+//
+//                //Set toast message based on result
+//                if (result)
+//                    Toast.makeText(getApplicationContext(), "Student:"+etLastName.getText().toString()+", "+etFirstName.getText().toString()+"  updated successfully", Toast.LENGTH_SHORT).show();
+//                else
+//                    Toast.makeText(getApplicationContext(), "Student:"+etLastName.getText().toString()+", "+etFirstName.getText().toString()+"  updating failed", Toast.LENGTH_SHORT).show();
+//
+//                //Reload list with latest data
+//                populateListView();
+//            }
+//        })
+//                //Click Listener of Negative Button (Cancel) - Do nothing and close window
+//                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int id) {
+//                    }
+//                });
+//
+//        //Show popup window
+//        AlertDialog alertDialog = builder.create();
+//        alertDialog.show();
+//    }
+//
+//    public void onClick_DeleteButton(View view)
+//    {
+//        //Getting List reference
+//        ListView myList = (ListView) findViewById(R.id.listView_student);
+//        //Getting position from the list
+//        final int position = myList.getPositionForView((View) view.getParent());
+//        //Getting itemID based on retrieved position
+//        long valueID = myCursorAdapter.getItemId(position);
+//        //Getting row details based on ID into cursor
+//        Cursor sampCursor = dbHelper.getRow(valueID);
+//
+//        //Storing the details of the row into local variables
+//        String editFName = sampCursor.getString(1).toString();
+//        String editLName = sampCursor.getString(2).toString();
+//
+//        //Deleting row from database based on ID
+//        boolean result = dbHelper.deleteRow(valueID);
+//
+//        //Set toast message based on result
+//        if(result)
+//            Toast.makeText(getApplicationContext(),"Student:"+editLName+", "+editFName+"  deleted",Toast.LENGTH_SHORT).show();
+//        else
+//            Toast.makeText(getApplicationContext(),"Student:"+editLName+", "+editFName+"  failed to delete",Toast.LENGTH_SHORT).show();
+//
+//        //Reload list with latest data
+//        populateListView();
+//    }
 }

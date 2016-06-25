@@ -3,6 +3,11 @@
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!--Place holder for Image-->
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" />
+
     <!--Place holder for First Name-->
     <TextView
         android:layout_width="90dp"
@@ -21,38 +26,4 @@
         android:textSize="15dp"
         android:gravity="center_vertical" />
 
-    <!--Place holder for Marks-->
-    <TextView
-        android:layout_width="30dp"
-        android:layout_height="48dp"
-        android:id="@+id/textViewMarks"
-        android:textSize="20dp"
-        android:gravity="center_vertical" />
-
-    <!--Button for Edit-->
-    <ImageButton
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:textSize="18dp"
-        android:gravity="center_vertical"
-        android:id="@+id/btnEdit"
-        android:background="@color/white"
-
-        android:onClick="onClick_EditButton"
-        />
-
-    <!--android:src="@drawable/ic_edit"-->
-
-    <!--Button for Delete-->
-    <ImageButton
-        android:gravity="center_vertical"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-
-        android:background="@color/white"
-        android:textSize="18dp"
-        android:id="@+id/btnDelete"
-        android:onClick="onClick_DeleteButton"
-        />
-    <!--android:src="@drawable/ic_delete"-->
 </LinearLayout>
