@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:padding="10dp"
+    android:layout_height="match_parent"
+    tools:context=".modify_window">
+
+    <!--Layout to hold record ID with TextView to prevent editing-->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="80dp"
+            android:gravity="center_vertical"
+            android:layout_height="match_parent"
+            android:id="@+id/textViewID"
+            android:text="ID" />
+
+        <TextView
+            android:id="@+id/viewID"
+            android:layout_width="180dp"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <!--Layout to hold First Name with EditView to allow add/edit-->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="80dp"
+            android:gravity="center_vertical"
+            android:layout_height="match_parent"
+            android:text="First Name" />
+
+        <EditText
+            android:id="@+id/editFirstName"
+            android:layout_width="180dp"
+            android:layout_height="match_parent"
+            android:inputType="text"/>
+    </LinearLayout>
+
+    <!--Layout to hold Last Name with EditView to allow add/edit-->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="80dp"
+            android:gravity="center_vertical"
+            android:layout_height="match_parent"
+            android:text="Last Name" />
+
+        <EditText
+            android:id="@+id/editLastName"
+            android:layout_width="180dp"
+            android:layout_height="match_parent"
+            android:inputType="text"/>
+    </LinearLayout>
+
+    <!--Layout to hold Marks with EditView to allow add/edit-->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="80dp"
+            android:gravity="center_vertical"
+            android:layout_height="match_parent"
+            android:text="Marks" />
+
+        <EditText
+            android:id="@+id/editMarks"
+            android:layout_width="180dp"
+            android:layout_height="match_parent"
+            android:inputType="number"/>
+    </LinearLayout>
+</LinearLayout>
