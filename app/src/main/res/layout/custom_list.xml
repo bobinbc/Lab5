@@ -37,19 +37,22 @@
         android:gravity="center_vertical"
         android:id="@+id/btnEdit"
         android:background="@color/white"
-        android:src="@drawable/ic_edit"
+
         android:onClick="onClick_EditButton"
         />
+
+    <!--android:src="@drawable/ic_edit"-->
 
     <!--Button for Delete-->
     <ImageButton
         android:gravity="center_vertical"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:src="@drawable/ic_delete"
+
         android:background="@color/white"
         android:textSize="18dp"
         android:id="@+id/btnDelete"
         android:onClick="onClick_DeleteButton"
         />
+    <!--android:src="@drawable/ic_delete"-->
 </LinearLayout>
