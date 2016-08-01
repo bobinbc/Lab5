@@ -3,10 +3,13 @@
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!--Place holder for Image-->
+    <!--Place holder for Image along with source-->
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent" />
+        android:layout_width="90dp"
+        android:layout_height="48dp"
+        android:layout_gravity="left"
+        android:src="@drawable/icon_image"
+        android:id="@+id/imageViewContact" />
 
     <!--Place holder for First Name-->
     <TextView

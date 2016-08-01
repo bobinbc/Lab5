@@ -44,23 +44,4 @@
             android:layout_height="match_parent"
             android:inputType="text"/>
     </LinearLayout>
-
-    <!--Layout to hold Marks with EditView to allow add/edit-->
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <TextView
-            android:layout_width="80dp"
-            android:gravity="center_vertical"
-            android:layout_height="match_parent"
-            android:text="Marks" />
-
-        <EditText
-            android:id="@+id/editMarks"
-            android:layout_width="180dp"
-            android:layout_height="match_parent"
-            android:inputType="number"/>
-    </LinearLayout>
 </LinearLayout>
